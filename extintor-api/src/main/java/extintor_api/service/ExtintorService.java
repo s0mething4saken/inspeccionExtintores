@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
-@Service
+@Service //Coloca este archivo en la capa de negocio
 @RequiredArgsConstructor //generador de constructor automático, no utiliza por ejemplo: extintor new Extintor
 public class ExtintorService {
 

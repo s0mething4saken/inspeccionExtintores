@@ -19,8 +19,6 @@ public class Inspeccion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //no nulo
-    @NotNull
     //muchos a uno, un extintor puede tener muchas inspecciones
     @ManyToOne
     //como foreign key en SQL
