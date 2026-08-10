@@ -7,20 +7,25 @@ import java.time.LocalDateTime;
 
 //creación de métodos getters/setters
 @Data
+
 //Clase como entidad JPA (Java Persistance API), mapeo objeto-relacional
 //(datos relacionales en apps Java mediante Objetos)
 @Entity
+
 //Nombre de la tabla (distinto a nombre de la clase)
 @Table(name = "inspecciones")
 public class Inspeccion {
+
     //id de la tabla
     @Id
+
     //autogeneración de id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     //muchos a uno, un extintor puede tener muchas inspecciones
     @ManyToOne
+
     //como foreign key en SQL
     @JoinColumn(name = "extintor_id")
     private Extintor extintor;

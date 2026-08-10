@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Inspección</title>
+    <th:block th:replace="layout :: head"></th:block>
+</head>
+<body>
+<div th:replace="layout :: nav"></div>
+<div class="container">
+    <div class="page-header">
+        <h2>Nueva Inspección</h2>
+        <a href="/inspecciones" class="btn btn-secondary">← Volver</a>
+    </div>
+
+    <form th:action="@{/inspecciones/guardar}" th:object="${inspeccion}" method="post">
+
+        <div class="form-group">
+            <label>Extintor</label>
+            <select name="extintorId">
+                <option th:each="e : ${extintores}"
+                        th:value="${e.id}"
+                        th:text="${e.numeroSerie + ' - ' + e.ubicacion}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Inspector</label>
+            <input type="text" th:field="*{inspectorNombre}" placeholder="Nombre del inspector"/>
+        </div>
+        <div class="form-group">
+            <label>Sello de Seguridad</label>
+            <select th:field="*{selloSeguridad}">
+                <option value="true">Completo</option>
+                <option value="false">Roto</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Buen Estado</label>
+            <select th:field="*{buenEstado}">
+                <option value="true">Si</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Desapelmazado</label>
+            <select th:field="*{desapelmazado}">
+                <option value="true">Si</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Presión Adecuada</label>
+            <select th:field="*{presionAdecuada}">
+                <option value="true">Si</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Etiqueta Legible</label>
+            <select th:field="*{etiquetaLegible}">
+                <option value="true">Si</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Observaciones</label>
+            <input type="text" th:field="*{observaciones}" placeholder="Observaciones adicionales"/>
+        </div>
+        <div class="form-group">
+            <label>Resultado</label>
+            <select th:field="*{resultado}">
+                <option value="APROBADO">Aprobado</option>
+                <option value="RECHAZADO">Rechazado</option>
+                <option value="PENDIENTE">Pendiente</option>
+            </select>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Guardar Inspección</button>
+            <a href="/inspecciones" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
