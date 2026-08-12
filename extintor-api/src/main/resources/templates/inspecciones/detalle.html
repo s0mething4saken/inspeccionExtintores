@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Inspección</title>
+    <th:block th:replace="layout :: head"></th:block>
+</head>
+<body>
+<div th:replace="layout :: nav"></div>
+<div class="container">
+    <div class="page-header">
+        <h2>Detalle de Inspección #<span th:text="${inspeccion.id}"></span></h2>
+        <a href="/inspecciones" class="btn btn-secondary">← Volver</a>
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label>Extintor</label>
+            <input type="text" th:value="${inspeccion.extintor.numeroSerie}" disabled/>
+        </div>
+        <div class="form-group">
+            <label>Ubicación</label>
+            <input type="text" th:value="${inspeccion.extintor.ubicacion}" disabled/>
+        </div>
+        <div class="form-group">
+            <label>Inspector</label>
+            <input type="text" th:value="${inspeccion.inspectorNombre}" disabled/>
+        </div>
+        <div class="form-group">
+            <label>Fecha</label>
+            <input type="text" th:value="${inspeccion.fecha}" disabled/>
+        </div>
+
+        <h3 style="margin: 1.5rem 0 1rem; color: #2c3e50;">Checklist</h3>
+
+        <div class="form-group">
+            <label>Sello de Seguridad</label>
+            <input type="text" th:value="${inspeccion.selloSeguridad ? '✅ OK' : '❌ Falla'}" disabled/>
+        </div>
+        <div class="form-group">
+            <label>Buen Estado</label>
+            <input type="text" th:value="${inspeccion.buenEstado ? '✅ OK' : '❌ Falla'}" disabled/>
+        </div>
+        <div class="form-group">
+            <label>Desapelmazado</label>
+            <input type="text" th:value="${inspeccion.desapelmazado ? '✅ OK' : '❌ Falla'}" disabled/>
+        </div>
+        <div class="form-group">
+            <label>Presión Adecuada</label>
+            <input type="text" th:value="${inspeccion.presionAdecuada ? '✅ OK' : '❌ Falla'}" disabled/>
+        </div>
+        <div class="form-group">
+            <label>Etiqueta Legible</label>
+            <input type="text" th:value="${inspeccion.etiquetaLegible ? '✅ OK' : '❌ Falla'}" disabled/>
+        </div>
+        <div class="form-group">
+            <label>Observaciones</label>
+            <input type="text" th:value="${inspeccion.observaciones}" disabled/>
+        </div>
+        <div class="form-group">
+            <label>Resultado</label>
+            <span th:class="${'badge-' + inspeccion.resultado.toString().toLowerCase()}"
+                  th:text="${inspeccion.resultado}"></span>
+        </div>
+    </form>
+</div>
+</body>
+</html>

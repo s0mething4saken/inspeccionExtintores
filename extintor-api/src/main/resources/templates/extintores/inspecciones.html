@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inspecciones del Extintor</title>
+    <th:block th:replace="layout :: head"></th:block>
+</head>
+<body>
+<div th:replace="layout :: nav"></div>
+<div class="container">
+    <div class="page-header">
+        <h2>Inspecciones de <span th:text="${extintor.numeroSerie}"></span></h2>
+        <a href="/extintores" class="btn btn-secondary">← Volver</a>
+    </div>
+
+    <p style="margin-bottom: 1rem; color: #555;">
+        Ubicación: <strong th:text="${extintor.ubicacion}"></strong>
+    </p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Inspector</th>
+            <th>Fecha</th>
+            <th>Sello</th>
+            <th>Buen Estado</th>
+            <th>Presión</th>
+            <th>Resultado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(inspecciones)}">
+            <td colspan="8" style="text-align:center; color:#999;">
+                Este extintor no tiene inspecciones registradas
+            </td>
+        </tr>
+        <tr th:each="inspeccion : ${inspecciones}">
+            <td th:text="${inspeccion.id}"></td>
+            <td th:text="${inspeccion.inspectorNombre}"></td>
+            <td th:text="${inspeccion.fecha}"></td>
+            <td th:text="${inspeccion.selloSeguridad ? '✅' : '❌'}"></td>
+            <td th:text="${inspeccion.buenEstado ? '✅' : '❌'}"></td>
+            <td th:text="${inspeccion.presionAdecuada ? '✅' : '❌'}"></td>
+            <td>
+                        <span th:class="${'badge-' + inspeccion.resultado.toString().toLowerCase()}"
+                              th:text="${inspeccion.resultado}"></span>
+            </td>
+            <td>
+                <a th:href="@{/inspecciones/{id}/detalle(id=${inspeccion.id})}"
+                   class="btn btn-secondary">Ver detalle</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package extintor_api.controller;
 
 import extintor_api.service.ExtintorService;
+import extintor_api.service.InspeccionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class ExtintorWebController {
 
     private final ExtintorService extintorService;
+    private final InspeccionService inspeccionService;
 
     @GetMapping
     public String lista(Model model) {
@@ -45,6 +47,17 @@ public class ExtintorWebController {
             extintorService.crear(extintor);
         }
         return "redirect:/extintores";
+    }
+    @PostMapping("/{id}/eliminar")
+    public String eliminar(@PathVariable Long id) {
+        extintorService.eliminar(id);
+        return "redirect:/extintores";
+    }
+    @GetMapping("/{id}/inspecciones")
+    public String inspecciones(@PathVariable Long id, Model model) {
+        model.addAttribute("extintor", extintorService.obtenerPorId(id));
+        model.addAttribute("inspecciones", inspeccionService.obtenerPorExtintor(id));
+        return "extintores/inspecciones";
     }
 }
 

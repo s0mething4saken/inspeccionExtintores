@@ -34,4 +34,9 @@ public class InspeccionWebController {
         inspeccionService.crear(extintorId, inspeccion);
         return "redirect:/inspecciones";
     }
+    @GetMapping("/{id}/detalle")
+    public String detalle(@PathVariable Long id, Model model) {
+        model.addAttribute("inspeccion", inspeccionService.obtenerPorId(id));
+        return "inspecciones/detalle";
+    }
 }
