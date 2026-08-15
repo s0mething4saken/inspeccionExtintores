@@ -39,7 +39,9 @@
                 <span th:unless="${extintor.activo}" class="badge-rechazado">Inactivo</span>
             </td>
             <td style="display: flex; gap: 0.5rem; align-items: center;">
+                <!--Botón para observar inspecciones-->
                 <a th:href="@{/extintores/{id}/inspecciones(id=${extintor.id})}" class="btn btn-secondary">Ver inspecciones</a>
+                <!--Botón para editar inspecciones-->
                 <a th:href="@{/extintores/{id}/editar(id=${extintor.id})}" class="btn btn-primary">Editar</a>
                 <!--Botón para eliminar el extintor-->
                 <form th:action="@{/extintores/{id}/eliminar(id=${extintor.id})}" method="post" style="display:inline">
